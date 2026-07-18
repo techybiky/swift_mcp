@@ -134,6 +134,22 @@ any HTTP-based MCP client at:
 https://your-deployed-host/mcp
 ```
 
+### Securing the public endpoint
+
+Set `MCP_API_KEY` in the deployment environment to require a bearer token on
+every request. If it's unset, the endpoint stays open (fine for local/manual
+testing, not for a public deploy):
+
+```bash
+MCP_API_KEY=your-secret-key npm run start:http
+```
+
+Clients must then send:
+
+```
+Authorization: Bearer your-secret-key
+```
+
 This is what lets a client that can't spawn a local process (a hosted
 connector, a web app, a teammate who doesn't have your code checked out)
 reach the same tools. It runs statelessly — every request gets a fresh
@@ -147,7 +163,7 @@ also makes it trivial to run on serverless platforms.
 - [x] Streamable HTTP transport for remote/universal access
 - [ ] Reverse pacs.009 -> MT202 mapping (currently only pacs.008 -> MT103 exists)
 - [ ] Full XSD schema validation for MX messages (current MX check is structural, not schema-complete)
-- [ ] Auth (API key or OAuth) on the HTTP endpoint before deploying it publicly — right now it's open to anyone with the URL
+- [x] Auth (API key) on the HTTP endpoint via `MCP_API_KEY` — optional, off by default for local testing
 - [ ] Publish to npm as `swift-iso20022-mcp` so it can be installed with `npx`
 - [ ] Submit to the MCP server directory / registry once it has real usage
 - [ ] Wire this same `src/swift-core.js` logic into Coexist as a shared package, so the SaaS UI and the MCP server never drift apart

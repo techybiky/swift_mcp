@@ -17,11 +17,25 @@ const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/ser
 const { createServer } = require("./server-factory.js");
 
 const PORT = process.env.PORT || 3000;
+const API_KEY = process.env.MCP_API_KEY;
 
 const app = express();
 app.use(express.json());
 
-app.post("/mcp", async (req, res) => {
+function requireApiKey(req, res, next) {
+  if (!API_KEY) return next(); // auth disabled unless MCP_API_KEY is set
+  const provided = req.get("Authorization")?.replace(/^Bearer\s+/i, "");
+  if (provided !== API_KEY) {
+    return res.status(401).json({
+      jsonrpc: "2.0",
+      error: { code: -32001, message: "Unauthorized — missing or invalid API key" },
+      id: null,
+    });
+  }
+  next();
+}
+
+app.post("/mcp", requireApiKey, async (req, res) => {
   try {
     const server = createServer();
     const transport = new StreamableHTTPServerTransport({
