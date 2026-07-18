@@ -15,7 +15,15 @@
     "test": "node test/swift-core.test.js",
     "test:manual": "node test/manual-client.js"
   },
-  "keywords": ["mcp", "swift", "iso20022", "payments", "banking", "mt103", "pacs008"],
+  "keywords": [
+    "mcp",
+    "swift",
+    "iso20022",
+    "payments",
+    "banking",
+    "mt103",
+    "pacs008"
+  ],
   "author": "Bikramaditya (KK) Das",
   "license": "MIT",
   "repository": {
