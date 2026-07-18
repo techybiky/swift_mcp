@@ -164,7 +164,7 @@ also makes it trivial to run on serverless platforms.
 - [ ] Reverse pacs.009 -> MT202 mapping (currently only pacs.008 -> MT103 exists)
 - [ ] Full XSD schema validation for MX messages (current MX check is structural, not schema-complete)
 - [x] Auth (API key) on the HTTP endpoint via `MCP_API_KEY` — optional, off by default for local testing
-- [ ] Publish to npm as `swift-iso20022-mcp` so it can be installed with `npx`
+- [x] Publish to npm as `@bikramdas1/swift-iso20022-mcp` so it can be installed with `npx`
 - [ ] Submit to the MCP server directory / registry once it has real usage
 - [ ] Wire this same `src/swift-core.js` logic into Coexist as a shared package, so the SaaS UI and the MCP server never drift apart
 

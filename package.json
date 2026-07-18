@@ -1,11 +1,14 @@
 {
-  "name": "swift-iso20022-mcp",
+  "name": "@bikramdas1/swift-iso20022-mcp",
   "version": "0.1.0",
   "description": "MCP server exposing SWIFT MT and ISO 20022 MX (pacs.008/pacs.009) message validation, BIC/IBAN checks, and MT103->pacs.008 field mapping as tools for AI agents.",
   "main": "src/index.js",
   "bin": {
     "swift-iso20022-mcp": "src/index.js"
   },
+  "files": [
+    "src"
+  ],
   "scripts": {
     "start": "node src/index.js",
     "start:http": "node src/http-server.js",
